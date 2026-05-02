@@ -1,16 +1,24 @@
-## Видео
-https://youtu.be/LyocQr7cN-0
-
-## Нагрузочное тестирование с ab:
+## Запуск
 
 ```
-ab -k -c 5 -n 20000 'http://localhost:8080/' & \
-ab -k -c 5 -n 2000 'http://localhost:8080/status/400' & \
-ab -k -c 5 -n 3000 'http://localhost:8080/status/409' & \
-ab -k -c 5 -n 5000 'http://localhost:8080/status/500' & \
-ab -k -c 50 -n 5000 'http://localhost:8080/status/200?seconds_sleep=1' & \
-ab -k -c 50 -n 2000 'http://localhost:8080/status/200?seconds_sleep=2'
+docker compose up -d --build
 ```
 
-## Пример дашборда
-Находится в папке /grafana/example-dashboard.json
+Для GPT-ассистента ключ должен быть в `/home/raim/raim/heart/.env`:
+
+```
+OPENAI_API_KEY=your-api-key
+OPENAI_MODEL=gpt-4o-mini
+```
+
+## Сервисы
+
+Grafana: http://localhost:3000
+Prometheus: http://localhost:9090
+Heart app: http://localhost:1111
+
+## Метрики heart
+
+```
+curl http://localhost:1111/metrics
+```
