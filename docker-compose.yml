@@ -57,10 +57,11 @@ services:
     restart: unless-stopped
 
   heart:
-    build: ../heart
+    build: ./heart
     container_name: heart
     env_file:
-      - ../heart/.env
+      - path: ./heart/.env
+        required: false
     ports:
       - "1111:1111"
     logging:
